@@ -1,6 +1,6 @@
 {
   "name": "@ftcvanguard/design",
-  "packageManager": "bun@1.3.10"
+  "packageManager": "bun@1.3.10",
   "version": "0.1.0",
   "description": "Vanguard design system: dark-only Svelte 5 components built on Bits UI",
   "license": "MIT",
