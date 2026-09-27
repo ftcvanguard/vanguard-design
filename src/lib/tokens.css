@@ -1,0 +1,209 @@
+/*
+ * Vanguard design tokens.
+ *
+ * Neutrals and hues come from Vanguard 1.0 (VS Code–style charcoal, #0078d4 blue,
+ * teal/amber/coral status colors). Roles follow GitHub Primer's functional model:
+ * every hue has a foreground, a solid emphasis fill, a muted tint and a border, so
+ * components pick a role, never a raw color.
+ *
+ * Contrast (WCAG 2.2):
+ *   fg / fg-muted / role fg  ≥ 4.5:1 on every background below
+ *   fg-subtle                ≥ 3:1   (placeholders, hints, disabled)
+ *   white on any *-emphasis  ≥ 4.5:1
+ *   border-strong            ≥ 3:1   on canvas and surface (boundaries that identify a control: checkbox, radio, switch)
+ */
+:root {
+  color-scheme: dark;
+
+  /* Backgrounds, darkest to lightest */
+  --vd-bg-inset: #141414; /* wells: inputs, code, sunken areas */
+  --vd-bg-chrome: #181818; /* app header, sidebar, status bar */
+  --vd-bg-canvas: #1e1e1e; /* page */
+  --vd-bg-surface: #252526; /* cards, menus, dialogs */
+  --vd-bg-control: #2b2b2d; /* secondary buttons, switch track */
+  --vd-bg-control-hover: #333336;
+  --vd-bg-control-active: #3a3a3e;
+  --vd-bg-hover: rgb(255 255 255 / 0.06); /* translucent, works on any surface */
+  --vd-bg-selected: rgb(255 255 255 / 0.1);
+  --vd-bg-disabled: #232324;
+  --vd-bg-backdrop: rgb(0 0 0 / 0.6);
+
+  /* Text */
+  --vd-fg: #d4d4d4;
+  --vd-fg-strong: #f5f5f5;
+  --vd-fg-muted: #a0a0a0;
+  --vd-fg-subtle: #7a7a7a;
+  --vd-fg-disabled: #6b6b6b;
+  --vd-fg-on-emphasis: #ffffff;
+
+  /* Borders */
+  --vd-border-muted: #2b2b2b; /* dividers inside a surface */
+  --vd-border: #333333; /* surfaces, cards, tables */
+  --vd-border-emphasis: #454545; /* control edges */
+  --vd-border-strong: #737373; /* hover, checkbox/radio/switch outlines */
+  --vd-border-disabled: #2e2e2e;
+
+  /* Accent — interactive, selected, informational */
+  --vd-accent: #4da6ff;
+  --vd-accent-emphasis: #0078d4;
+  --vd-accent-emphasis-hover: #0068b8;
+  --vd-accent-emphasis-active: #005a9e;
+  --vd-accent-muted: rgb(77 166 255 / 0.14);
+  --vd-accent-border: rgb(77 166 255 / 0.4);
+
+  /* Success */
+  --vd-success: #4ec9b0;
+  --vd-success-emphasis: #16705e;
+  --vd-success-muted: rgb(78 201 176 / 0.13);
+  --vd-success-border: rgb(78 201 176 / 0.4);
+
+  /* Attention — warnings, pending */
+  --vd-attention: #f0ad4e;
+  --vd-attention-emphasis: #9a6700;
+  --vd-attention-muted: rgb(240 173 78 / 0.13);
+  --vd-attention-border: rgb(240 173 78 / 0.4);
+
+  /* Danger — errors, destructive actions */
+  --vd-danger: #ff6b6b;
+  --vd-danger-emphasis: #c42a32;
+  --vd-danger-emphasis-hover: #ab232a;
+  --vd-danger-muted: rgb(255 107 107 / 0.13);
+  --vd-danger-border: rgb(255 107 107 / 0.4);
+
+  /*
+   * FTC alliance colors. Kept separate from danger/accent so "red alliance" never
+   * reads as "error" in code, and the two can diverge without a hunt.
+   */
+  --vd-alliance-red: #ff6b6b;
+  --vd-alliance-red-muted: rgb(255 107 107 / 0.12);
+  --vd-alliance-blue: #4da6ff;
+  --vd-alliance-blue-muted: rgb(77 166 255 / 0.12);
+
+  --vd-focus: #4da6ff;
+
+  --vd-shadow-control: 0 1px 0 rgb(0 0 0 / 0.25);
+  --vd-shadow-overlay: 0 8px 24px rgb(0 0 0 / 0.5), 0 1px 3px rgb(0 0 0 / 0.3);
+  --vd-shadow-dialog: 0 16px 48px rgb(0 0 0 / 0.6);
+
+  --vd-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@theme inline {
+  --color-inset: var(--vd-bg-inset);
+  --color-chrome: var(--vd-bg-chrome);
+  --color-canvas: var(--vd-bg-canvas);
+  --color-surface: var(--vd-bg-surface);
+  --color-control: var(--vd-bg-control);
+  --color-control-hover: var(--vd-bg-control-hover);
+  --color-control-active: var(--vd-bg-control-active);
+  --color-hover: var(--vd-bg-hover);
+  --color-selected: var(--vd-bg-selected);
+  --color-disabled: var(--vd-bg-disabled);
+  --color-backdrop: var(--vd-bg-backdrop);
+
+  --color-fg: var(--vd-fg);
+  --color-fg-strong: var(--vd-fg-strong);
+  --color-fg-muted: var(--vd-fg-muted);
+  --color-fg-subtle: var(--vd-fg-subtle);
+  --color-fg-disabled: var(--vd-fg-disabled);
+  --color-fg-on-emphasis: var(--vd-fg-on-emphasis);
+
+  --color-border-muted: var(--vd-border-muted);
+  --color-border: var(--vd-border);
+  --color-border-emphasis: var(--vd-border-emphasis);
+  --color-border-strong: var(--vd-border-strong);
+  --color-border-disabled: var(--vd-border-disabled);
+
+  --color-accent: var(--vd-accent);
+  --color-accent-emphasis: var(--vd-accent-emphasis);
+  --color-accent-emphasis-hover: var(--vd-accent-emphasis-hover);
+  --color-accent-emphasis-active: var(--vd-accent-emphasis-active);
+  --color-accent-muted: var(--vd-accent-muted);
+  --color-accent-border: var(--vd-accent-border);
+
+  --color-success: var(--vd-success);
+  --color-success-emphasis: var(--vd-success-emphasis);
+  --color-success-muted: var(--vd-success-muted);
+  --color-success-border: var(--vd-success-border);
+
+  --color-attention: var(--vd-attention);
+  --color-attention-emphasis: var(--vd-attention-emphasis);
+  --color-attention-muted: var(--vd-attention-muted);
+  --color-attention-border: var(--vd-attention-border);
+
+  --color-danger: var(--vd-danger);
+  --color-danger-emphasis: var(--vd-danger-emphasis);
+  --color-danger-emphasis-hover: var(--vd-danger-emphasis-hover);
+  --color-danger-muted: var(--vd-danger-muted);
+  --color-danger-border: var(--vd-danger-border);
+
+  --color-alliance-red: var(--vd-alliance-red);
+  --color-alliance-red-muted: var(--vd-alliance-red-muted);
+  --color-alliance-blue: var(--vd-alliance-blue);
+  --color-alliance-blue-muted: var(--vd-alliance-blue-muted);
+
+  --color-focus: var(--vd-focus);
+  --color-white: #fff;
+  --color-black: #000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --shadow-control: var(--vd-shadow-control);
+  --shadow-overlay: var(--vd-shadow-overlay);
+  --shadow-dialog: var(--vd-shadow-dialog);
+
+  --ease-vd: var(--vd-ease);
+}
+
+@theme {
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: var(--font-mono);
+
+  /* Type scale tuned for a 13px monospace UI */
+  --text-2xs: 10px;
+  --text-2xs--line-height: 14px;
+  --text-xs: 11px;
+  --text-xs--line-height: 16px;
+  --text-sm: 12px;
+  --text-sm--line-height: 18px;
+  --text-base: 13px;
+  --text-base--line-height: 20px;
+  --text-md: 14px;
+  --text-md--line-height: 20px;
+  --text-lg: 16px;
+  --text-lg--line-height: 24px;
+  --text-xl: 20px;
+  --text-xl--line-height: 28px;
+  --text-2xl: 24px;
+  --text-2xl--line-height: 32px;
+  --text-3xl: 32px;
+  --text-3xl--line-height: 40px;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+}
+
+@theme {
+  --animate-vd-fade-in: vd-fade-in 150ms var(--vd-ease);
+  --animate-vd-fade-out: vd-fade-out 100ms ease-in forwards;
+  --animate-vd-pop-in: vd-pop-in 150ms var(--vd-ease);
+  --animate-vd-pop-out: vd-pop-out 100ms ease-in forwards;
+  --animate-vd-dialog-in: vd-dialog-in 200ms var(--vd-ease);
+  --animate-vd-dialog-out: vd-pop-out 120ms ease-in forwards;
+  --animate-vd-accordion-down: vd-accordion-down 200ms var(--vd-ease);
+  --animate-vd-accordion-up: vd-accordion-up 150ms var(--vd-ease);
+  --animate-vd-indeterminate: vd-indeterminate 1.4s ease-in-out infinite;
+  --animate-vd-pulse: vd-pulse 1.5s ease-in-out infinite;
+
+  @keyframes vd-fade-in { from { opacity: 0; } }
+  @keyframes vd-fade-out { to { opacity: 0; } }
+  @keyframes vd-pop-in { from { opacity: 0; transform: scale(0.96); } }
+  @keyframes vd-pop-out { to { opacity: 0; transform: scale(0.96); } }
+  @keyframes vd-dialog-in { from { opacity: 0; transform: translateY(8px) scale(0.98); } }
+  @keyframes vd-accordion-down { from { height: 0; } to { height: var(--bits-accordion-content-height); } }
+  @keyframes vd-accordion-up { from { height: var(--bits-accordion-content-height); } to { height: 0; } }
+  @keyframes vd-indeterminate { from { translate: -100% 0; } to { translate: 250% 0; } }
+  @keyframes vd-pulse { 50% { opacity: 0.55; } }
+}

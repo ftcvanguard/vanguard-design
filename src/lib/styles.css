@@ -1,0 +1,101 @@
+/*
+ * Prebuilt stylesheet for @vanguard/design: preflight, tokens, base styles and every
+ * utility the components use. Compiled to dist/styles.css.
+ */
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css' layer(utilities) source(none);
+
+/* Only Vanguard roles exist as colors, so components can't reach for raw palette values. */
+@theme {
+  --color-*: initial;
+}
+
+@import './tokens.css';
+
+@source './**/*.{svelte,ts}';
+
+/*
+ * Interaction variants also match data-force-state, so documentation can render hover,
+ * active and focus states statically: <Button data-force-state="hover" />.
+ */
+@custom-variant hover {
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+  &[data-force-state~='hover'] {
+    @slot;
+  }
+}
+@custom-variant active {
+  &:active {
+    @slot;
+  }
+  &[data-force-state~='active'] {
+    @slot;
+  }
+}
+@custom-variant focus {
+  &:focus {
+    @slot;
+  }
+  &[data-force-state~='focus'] {
+    @slot;
+  }
+}
+@custom-variant focus-within {
+  &:focus-within {
+    @slot;
+  }
+  &[data-force-state~='focus'] {
+    @slot;
+  }
+}
+@custom-variant focus-visible {
+  &:focus-visible {
+    @slot;
+  }
+  &[data-force-state~='focus'] {
+    @slot;
+  }
+}
+
+@layer base {
+  html {
+    background-color: var(--vd-bg-canvas);
+    color: var(--vd-fg);
+    font-family: var(--font-mono);
+    font-feature-settings: 'calt' 0; /* no ligatures in UI text: "!=" stays "!=" */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* The 13px base lives on body, not html, so rem-based spacing and control heights keep a 16px root. */
+  body {
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+  }
+
+  ::selection {
+    background-color: var(--vd-accent-emphasis);
+    color: var(--vd-fg-on-emphasis);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--vd-focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
